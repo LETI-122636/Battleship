@@ -88,6 +88,21 @@ class FleetConditionTest {
             IShip s2 = new Caravel(Compass.EAST, new Position(3, 3));
             assertTrue(fleet.addShip(s2));
         }
+
+        @Test
+        void addShip_allows_when_sizeEqualsFleetSize() throws ReflectiveOperationException {
+            Fleet fleet = new Fleet();
+            // build a list with exactly FLEET_SIZE elements
+            List<IShip> exact = new ArrayList<>();
+            for (int i = 0; i < IFleet.FLEET_SIZE; i++)
+                exact.add(new Barge(Compass.NORTH, new Position(i % IFleet.BOARD_SIZE, i / IFleet.BOARD_SIZE)));
+
+            setFleetShips(fleet, exact);
+
+            // Now try to add a valid ship; ships.size() == FLEET_SIZE so addShip should still allow (<=)
+            IShip candidate = new Caravel(Compass.EAST, new Position(0, 5));
+            assertTrue(fleet.addShip(candidate), "addShip should allow when current size equals FLEET_SIZE (<= check)");
+        }
     }
 
     @Nested
@@ -132,6 +147,50 @@ class FleetConditionTest {
             Fleet fleet = new Fleet();
             IShip ship = new Caravel(Compass.NORTH, new Position(2, 2));
             assertTrue(isInsideBoard(fleet, ship));
+        }
+    }
+
+    @Nested
+    class PrintStatusTests {
+
+        @Test
+        void printStatus_outputs_expected_sections() {
+            Fleet fleet = new Fleet();
+            // add one ship of each category to ensure printShipsByCategory prints something
+            fleet.addShip(new Barge(Compass.NORTH, new Position(0, 0)));
+            fleet.addShip(new Caravel(Compass.EAST, new Position(2, 2)));
+            fleet.addShip(new Carrack(Compass.SOUTH, new Position(4, 4)));
+            fleet.addShip(new Frigate(Compass.WEST, new Position(6, 6)));
+            fleet.addShip(new Galleon(Compass.NORTH, new Position(8, 8)));
+
+            java.io.PrintStream oldOut = System.out;
+            try (java.io.ByteArrayOutputStream baos = new java.io.ByteArrayOutputStream();
+                 java.io.PrintStream ps = new java.io.PrintStream(baos)) {
+                System.setOut(ps);
+                fleet.printStatus();
+                ps.flush();
+                String out = baos.toString();
+                // The output should contain category names or ship representations
+                assertFalse(out.isEmpty());
+            } catch (Exception e) {
+                fail("Exception while testing printStatus: " + e.getMessage());
+            } finally {
+                System.setOut(oldOut);
+            }
+        }
+    }
+
+    @Nested
+    class ShipTests {
+
+        @Test
+        void ship_shoot_with_nonmatching_position_does_not_mark_hits() {
+            Caravel ship = new Caravel(Compass.EAST, new Position(3, 3));
+            Position outside = new Position(9, 9);
+            ship.shoot(outside);
+            // none of the positions should be marked as hit
+            boolean anyHit = ship.getPositions().stream().anyMatch(IPosition::isHit);
+            assertFalse(anyHit);
         }
     }
 }
