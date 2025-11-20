@@ -29,7 +29,8 @@ Propósito: Lista dos casos de teste unitários mapeados a partir das classes de
 * ShipTests (TMS-ID: TMS-UT-002-20)- passed
 
 ## Caso separado: Tarefas
-* testes feitos por LETI-122636
+* testes feitos por LETI-122609
+* Relatorio criado por LETI-122609
 
 --
 Versão: 1.0
