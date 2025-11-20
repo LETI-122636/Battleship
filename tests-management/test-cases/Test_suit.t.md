@@ -26,7 +26,7 @@ Propósito: Lista dos casos de teste unitários mapeados a partir das classes de
 * ShipConstructionTests1 (TMS-ID: TMS-UT-002-17)- passed
 * ShipEdgeCasesTest (TMS-ID: TMS-UT-002-18)- passed
 * ShipTest (TMS-ID: TMS-UT-002-19)- passed
-* ShipTests (TMS-ID: TMS-UT-002-20)- passe
+* ShipTests (TMS-ID: TMS-UT-002-20)- passed
 
 ## Caso separado: Tarefas
 * testes feitos por LETI-122636
