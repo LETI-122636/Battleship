@@ -1,6 +1,7 @@
 /**
  *
- */
+ *//*
+
 package iscteiul.ista.battleship;
 
 import java.util.Scanner;
@@ -16,9 +17,11 @@ public class Tasks {
 
     private static final String GOODBYE_MESSAGE = "Bons ventos!";
 
-    /**
+    */
+/**
      * Strings to be used by the user
-     */
+     *//*
+
     private static final String NOVAFROTA = "nova";
     private static final String DESISTIR = "desisto";
     private static final String RAJADA = "rajada";
@@ -34,10 +37,12 @@ public class Tasks {
     // then some rule checking, then dealing with firing and so on
     /////////////////////////////////////////////////////////////////////////////
 
-    /**
+    */
+/**
      * This task tests the building up of ships: For each ship, reads positions and
      * indicates whether the ship occupies each one of such positions or not
-     */
+     *//*
+
     public static void taskA() {
         Scanner in = new Scanner(System.in);
         while (in.hasNext()) {
@@ -50,9 +55,11 @@ public class Tasks {
         }
     }
 
-    /**
+    */
+/**
      * This task tests the building up of fleets
-     */
+     *//*
+
     public static void taskB() {
         Scanner in = new Scanner(System.in);
         IFleet fleet = null;
@@ -75,10 +82,12 @@ public class Tasks {
         LOGGER.info(GOODBYE_MESSAGE);
     }
 
-    /**
+    */
+/**
      * This task tests the building up of fleets and takes into consideration the
      * possibility of cheating
-     */
+     *//*
+
     public static void taskC() {
         Scanner in = new Scanner(System.in);
         IFleet fleet = null;
@@ -104,9 +113,11 @@ public class Tasks {
         LOGGER.info(GOODBYE_MESSAGE);
     }
 
-    /**
+    */
+/**
      * This task also tests the fighting element of a round of three shots
-     */
+     *//*
+
     public static void taskD() {
 
         Scanner in = new Scanner(System.in);
@@ -149,12 +160,14 @@ public class Tasks {
         LOGGER.info(GOODBYE_MESSAGE);
     }
 
-    /**
+    */
+/**
      * This operation allows the build up of a fleet, given user data
      *
      * @param in The scanner to read from
      * @return The fleet that has been built
-     */
+     *//*
+
     static Fleet buildFleet(Scanner in) {
         assert in != null;
 
@@ -177,12 +190,14 @@ public class Tasks {
         return fleet;
     }
 
-    /**
+    */
+/**
      * This operation reads data about a ship, build it and returns it
      *
      * @param in The scanner to read from
      * @return The created ship based on the data that has been read
-     */
+     *//*
+
     static Ship readShip(Scanner in) {
         String shipKind = in.next();
         Position pos = readPosition(in);
@@ -191,25 +206,29 @@ public class Tasks {
         return Ship.buildShip(shipKind, bearing, pos);
     }
 
-    /**
+    */
+/**
      * This operation allows reading a position in the map
      *
      * @param in The scanner to read from
      * @return The position that has been read
-     */
+     *//*
+
     static Position readPosition(Scanner in) {
         int row = in.nextInt();
         int column = in.nextInt();
         return new Position(row, column);
     }
 
-    /**
+    */
+/**
      * This operation allows firing a round of shots (three) over a fleet, in the
      * context of a game
      *
      * @param in   The scanner to read from
      * @param game The context game while fleet is being attacked
-     */
+     *//*
+
     static void firingRound(Scanner in, IGame game) {
         for (int i = 0; i < NUMBER_SHOTS; i++) {
             IPosition pos = readPosition(in);
@@ -221,3 +240,4 @@ public class Tasks {
     }
 
 }
+*/
